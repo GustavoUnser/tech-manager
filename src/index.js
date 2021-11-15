@@ -7,9 +7,9 @@ import Provider from './store/index'
 
 ReactDOM.render(
     <React.StrictMode>
-        <Provider>
+        <StateProvider>
             <App />
-        </Provider>
+        </StateProvider>
     </React.StrictMode>,
     document.getElementById('root')
 );
