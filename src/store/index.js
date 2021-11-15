@@ -1,30 +1,26 @@
-import React, {createContext, useReducer} from 'react';
-import { initialState } from './reducers/auth';
+import useCombinedReducers from "./hooks/useCombinedReducers";
+import { StoreContext } from "./hooks/useStore";
 
-export const storeContext = createContext(initialState);
-export const useStoreContext = () => useContext(storeContext);
 
-const { Provider } = storeContext;
-
-const StateProvider = ( { children } ) => {
-  const [state, dispatch] = useReducer((state, action) => {
-    switch(action.type) {
-      case 'action description':
-        const newState = // do something with the action
-        return newState;
-      default:
-        throw new Error();
+const Provider = ({ children }) => {
+    const { store, reducers } = useCombinedReducers();
+  
+    const triggerDispatchs = (action) => {
+      for (let i = 0; i < reducers.length; i++) {
+        reducers[i](action);
+      }
     };
-  }, initialState);
+  
+    return (
+      <StoreContext.Provider
+        value={{
+          store,
+          dispatch: triggerDispatchs,
+        }}
+      >
+        {children}
+      </StoreContext.Provider>
+    );
+  };
 
-  return <Provider value={{ state, dispatch }}>{children}</Provider>;
-};
-
-export { storeContext, StateProvider }
-
-
-
-
-
-
-
+export default Provider;

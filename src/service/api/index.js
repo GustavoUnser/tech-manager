@@ -1,8 +1,9 @@
 import axios from "axios"
-import store from "../../store"
+import Provider from "../../store"
 
 const authInterceptor = (request) => {
-    let user = store.getState().auth
+    Provider.auth
+    let user = Provider.getState().auth
 
     if (user.isAuth) {
         request.headers = {
