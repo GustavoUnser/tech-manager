@@ -1,10 +1,10 @@
 import { Alert, Button, Card, CardActions, CardContent, TextField, Typography } from "@mui/material"
 import { makeStyles } from "@mui/styles"
 import { useState } from "react"
-import { useDispatch } from "react-redux"
 import { useHistory } from "react-router"
 import { login } from "../../store/reducers/auth"
 import { executeLogin } from "../../service/auth"
+import { useStore } from "../../store"
 
 const useStyles = makeStyles(theme => ({
     loginWrapper: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 const LoginPage = () => {
     const history = useHistory()
     const loginStyles = useStyles()
-    const dispatch = useDispatch()
+    const [, dispatch] = useStore()
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')

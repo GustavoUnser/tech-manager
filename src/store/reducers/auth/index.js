@@ -17,7 +17,7 @@ const loadInitialState = () => {
     }
 }
 
-export const initialState = loadInitialState()
+const initialState = loadInitialState()
 
 const loginAction = (state, loginResult) => {
     state.isAuth = true
@@ -53,5 +53,12 @@ const authSlice = createSlice({
 })
 
 export const { login, logout } = authSlice.actions
+
+const authReducer = authSlice.reducer
+
+export {
+    initialState,
+    authReducer
+}
 
 export default authSlice.reducer

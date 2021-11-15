@@ -2,6 +2,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, MenuIt
 import { useEffect, useState } from "react"
 import { getEquipments } from '../../../service/equipments'
 import { saveReservation } from "../../../service/reservations"
+import { useStore } from "../../../store"
 
 const RegisterReservationDialog = ({ isOpen, onClose }) => {
 
@@ -9,11 +10,13 @@ const RegisterReservationDialog = ({ isOpen, onClose }) => {
 
     const [equipment, setEquipment] = useState('')
     const [date, setDate] = useState('')
+    const [state] = useStore()
+    const { userData } = state
 
     useEffect(() => {
         const loadEquipments = async () => {
             try {
-                let result = await getEquipments()
+                let result = await getEquipments(userData.token)
                 setEquipments(result)
             } catch (exception) {
                 console.log(exception.message)
@@ -21,7 +24,7 @@ const RegisterReservationDialog = ({ isOpen, onClose }) => {
         }
 
         loadEquipments()
-    }, [])
+    }, [userData])
 
     const clearState = () => {
         setDate('')

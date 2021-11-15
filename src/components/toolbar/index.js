@@ -1,13 +1,13 @@
 import { AppBar, Button, Toolbar, Typography } from '@mui/material'
-import { useDispatch } from 'react-redux'
 import { useHistory, useRouteMatch } from 'react-router'
 import { Link } from 'react-router-dom'
 import { logout } from '../../store/reducers/auth'
+import { useStore } from '../../store'
 
 const AppToolbar = () => {
     const { url } = useRouteMatch()
     
-    const dispatch = useDispatch()
+    const [, dispatch] = useStore()
     const history = useHistory()
     
     const exitApp = () => {

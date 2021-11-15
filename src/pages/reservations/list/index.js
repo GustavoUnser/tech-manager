@@ -2,7 +2,7 @@ import { Alert, Fab, Paper, Table, TableBody, TableCell, TableContainer, TableHe
 import { Add } from "@mui/icons-material"
 import { useCallback, useEffect, useState } from "react"
 import RegisterReservationDialog from "../register"
-import { useSelector } from "react-redux"
+import { useStore } from "../../../store"
 import { getMyReservations } from "../../../service/reservations"
 import moment from 'moment'
 
@@ -11,11 +11,12 @@ const ListReservationsPage = () => {
     const [reservations, setReservations] = useState([])
     const [error, setError] = useState('')
     const [isDialogOpen, setDialogOpen] = useState(false)
-    const user = useSelector(state => state.auth.userData)
+    const [state] = useStore()
+    const user = state.userData
 
     const getReservations = useCallback(async () => {
         try {
-            let result = await getMyReservations(user.isAdmin)
+            let result = await getMyReservations(user.isAdmin, user.token)
             setReservations(result)
         } catch (exception) {
             setError(exception.message)
