@@ -1,10 +1,26 @@
-import { configureStore } from "@reduxjs/toolkit";
-import authReducer from './reducers/auth'
+import useCombinedReducers from "./hooks/useCombinedReducers";
+import { StoreContext } from "./hooks/useStore";
 
-const store = configureStore({ 
-    reducer: { 
-        auth: authReducer
-    }
-})
 
-export default store
+const Provider = ({ children }) => {
+    const { store, reducers } = useCombinedReducers();
+  
+    const triggerDispatchs = (action) => {
+      for (let i = 0; i < reducers.length; i++) {
+        reducers[i](action);
+      }
+    };
+  
+    return (
+      <StoreContext.Provider
+        value={{
+          store,
+          dispatch: triggerDispatchs,
+        }}
+      >
+        {children}
+      </StoreContext.Provider>
+    );
+  };
+
+export default Provider;

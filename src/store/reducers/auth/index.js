@@ -17,7 +17,7 @@ const loadInitialState = () => {
     }
 }
 
-const initialState = loadInitialState()
+export const initialState = loadInitialState()
 
 const loginAction = (state, loginResult) => {
     state.isAuth = true
