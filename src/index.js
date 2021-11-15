@@ -3,12 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-<<<<<<< HEAD
 import Provider from './store/index'
-=======
-import { Provider } from 'react-redux';
-import store from './store';
->>>>>>> parent of 334016f... I have no idea what I'm doin
 
 ReactDOM.render(
     <React.StrictMode>
