@@ -1,6 +1,6 @@
 import { StoreContext } from "./hooks/useStore";
 
-const returnPropsAsDefault = (store, props) => props;
+const returnPropsAsDefault = (store, props) => props
 
 const Connect =
     (mapStateToProps = returnPropsAsDefault) =>
@@ -9,8 +9,8 @@ const Connect =
             return (
                 <StoreContext.Consumer>
                     {({ dispatch, store }) => {
-                        const storeProps = mapStateToProps(store, props);
-                        return <Component {...storeProps} dispatch={dispatch} />;
+                        const storeProps = mapStateToProps(store, props)
+                        return <Component {...storeProps} dispatch={dispatch} />
                     }}
                 </StoreContext.Consumer>
             );

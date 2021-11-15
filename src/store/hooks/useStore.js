@@ -1,12 +1,12 @@
-import { createContext, useContext } from "react";
-import { initialState } from "../reducers/auth";
+import { createContext, useContext } from "react"
+import { initialState } from "../reducers/auth"
 
 export const defaultStore = {
     store: { ...initialState},
-    dispatch: () => {},
+    dispatch: () => {}
 };
 
-export const StoreContext = createContext(defaultStore);
+export const StoreContext = createContext(defaultStore)
 export default () => {
-    return useContext(StoreContext);
+    return useContext(StoreContext)
 }
